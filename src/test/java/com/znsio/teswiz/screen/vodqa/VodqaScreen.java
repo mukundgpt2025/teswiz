@@ -1,5 +1,6 @@
 package com.znsio.teswiz.screen.vodqa;
 
+import com.znsio.teswiz.entities.Direction;
 import com.znsio.teswiz.entities.Platform;
 import com.znsio.teswiz.runner.Driver;
 import com.znsio.teswiz.runner.Drivers;
@@ -19,7 +20,7 @@ public abstract class VodqaScreen {
         LOGGER.info(SCREEN_NAME + ": Driver type: " + driver.getType() + ": Platform: " + platform);
         Visual visually = Drivers.getVisualDriverForCurrentUser(Thread.currentThread().getId());
 
-        switch(platform) {
+        switch (platform) {
             case android:
                 return new VodqaScreenAndroid(driver, visually);
         }
@@ -28,11 +29,38 @@ public abstract class VodqaScreen {
     }
 
     public abstract VodqaScreen login();
+
     public abstract VodqaScreen scrollFromOneElementPointToAnother();
-    public abstract boolean isElementWithTextVisible();
+
     public abstract VodqaScreen tapInTheMiddle();
+
     public abstract boolean isPreviousPageHeadingVisible(String pageHeading);
+
     public abstract VodqaScreen openVerticalSwipingScreen();
+
     public abstract VodqaScreen scrollDownByScreenSize();
 
+    public abstract VodqaScreen selectScreen(String screenName);
+
+    public abstract VodqaScreen swipeLeft();
+
+    public abstract boolean isSwipeSuccessful(String tileNumber);
+
+    public abstract VodqaScreen swipeRight();
+
+    public abstract VodqaScreen swipeByPassingPercentageAttributes(int atPercentScreenHeight, int fromPercentScreenWidth, int toPercentScreenWidth);
+
+    public abstract WebViewScreen enterIntoNewsWebViewSection();
+
+    public abstract NativeViewScreen enterIntoNativeViewSection();
+
+    public abstract VodqaScreen putAppInTheBackground(int time);
+
+    public abstract boolean isAppWorkingInBackground();
+
+    public abstract VodqaScreen scrollDownInDynamicLayer(Direction direction);
+
+    public abstract boolean isElementWithTextVisible(String elementText);
+  
+    public abstract VodqaScreen scrollVerticallyByPercentage(int fromPercentHeight, int toPercentHeight, int percentWidth);
 }
